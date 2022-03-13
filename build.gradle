@@ -1,0 +1,47 @@
+plugins {
+  id 'org.springframework.boot' version '2.3.0.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+  id 'java'
+}
+
+group = 'com.thoughtworks'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
+  implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.66'
+  implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.24'
+  implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+  implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.0.RELEASE'
+  implementation group: 'com.alibaba', name: 'druid', version: '1.2.2'
+  implementation group: 'org.flywaydb', name: 'flyway-core', version: '5.2.2'
+  // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+  implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.8.RELEASE'
+  implementation 'io.github.openfeign:feign-httpclient:11.0'
+    implementation 'org.testng:testng:7.1.0'
+    compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+  testImplementation 'org.mockito:mockito-core:3.5.13'
+  testCompile('com.h2database:h2')
+  testImplementation 'it.ozimov:embedded-redis:0.7.2'
+
+}
+
+test {
+  useJUnitPlatform()
+}
